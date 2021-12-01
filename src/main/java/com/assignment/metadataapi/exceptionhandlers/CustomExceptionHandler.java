@@ -19,6 +19,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/*
+Class: CustomExceptionHandler
+Description: Exception Handler class that handles the exception from controller endpoints and return appropriate error message
+Author:Prachi Gupta
+ */
+
+
 @ControllerAdvice
 @ResponseBody
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
