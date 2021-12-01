@@ -30,9 +30,9 @@ import java.util.Map;
 @Validated
 public class MetadataController {
     /*
-    Method Name: getAllResources
-    Params: NA
-    Description: Returns all the resources in Foo
+    Method Name: addMetadata
+    Params: Metadata
+    Description: Returns all the resources in Metadata api
      */
 
     @Autowired
@@ -61,6 +61,12 @@ public class MetadataController {
         }
     }
 
+     /*
+    Method Name: getAllMetadata
+    Params: NA
+    Description: Returns all the metadata info in redis
+     */
+    
     @GetMapping("/metadata")
     public ResponseEntity<Map<String, Metadata>> getAllMetadata() {
         Map<String, Metadata> output;
@@ -71,6 +77,13 @@ public class MetadataController {
             return new ResponseEntity<Map<String, Metadata>>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
+     /*
+    Method Name: getMetadata
+    Params: String
+    Description: Returns the metadata for the title provided in Metadata api
+     */
+    
     @GetMapping("/metadata/{title}")
     public ResponseEntity<Metadata> getMetadata(@PathVariable("title") final String title) {
         try{
@@ -85,7 +98,11 @@ public class MetadataController {
         }
 
     }
-
+    /*
+    Method Name: deleteMetadata
+    Params: String
+    Description: Deletes the metadata for the title provided in Metadata api
+     */
     @DeleteMapping("/metadata/{title}")
     public ResponseEntity<Void> deleteMetadata(@PathVariable("title") final String title) {
         try{
@@ -100,6 +117,12 @@ public class MetadataController {
         }
     }
 
+    /*
+    Method Name: updateResource
+    Params: Metadata
+    Description: Updates the metadata for the info provided in Metadata api
+     */
+    
     @PutMapping(value = "/metadata",consumes = "application/x-yaml")
     public ResponseEntity<String> updateResource(@RequestBody Metadata metadata){
         List<Maintainers> maintainersList = metadata.getMaintainers();
